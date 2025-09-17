@@ -8,17 +8,17 @@
   <style>
     body { font-family: Arial, sans-serif; max-width: 1000px; margin: auto; padding: 40px; line-height: 1.6; }
     h1 { text-align: center; font-size: 2.2em; font-weight: bold; margin-bottom: 0.3em; }
-    .conference { text-align: center; font-weight: bold; margin-bottom: 1em; }
     .authors { text-align: center; font-size: 1.1em; }
     .affiliation { text-align: center; font-size: 0.95em; color: #555; font-style: italic; margin-bottom: 1.5em; }
     .links { text-align: center; margin-top: 15px; font-size: 1.1em; }
+    .video { margin: 30px 0; text-align: center; }
+    video { width: 100%; max-width: 720px; border: 1px solid #ccc; border-radius: 8px; }
     a { color: #007acc; text-decoration: none; }
     a:hover { text-decoration: underline; }
   </style>
 </head>
 <body>
   <h1>Talking Head Synthesis with Facial Landmark Guidance via 3D Gaussian Splatting</h1>
-  <div class="conference">ICME 2025</div>
 
   <div class="authors">
     Ziheng Yang⋆ &nbsp; Yinfeng Yu⋆ &nbsp; Yongming Li⋆∗
@@ -33,7 +33,16 @@
     </a>
   </div>
 
+  <!-- 视频部分 -->
+  <div class="video">
+    <video controls>
+      <source src="output.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
   <h2 style="text-align:center; margin-top: 2em;">Contact</h2>
   <p style="text-align:center;">Author: Your Name | Email: <a href="mailto:your@email.com">your@email.com</a></p>
 </body>
 </html>
+

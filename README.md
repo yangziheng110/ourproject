@@ -1,17 +1,8 @@
-# TalkingGaussian: Structure-Persistent 3D Talking Head Synthesis via Gaussian Splatting
-
-This is the official repository for our ECCV 2024 paper **TalkingGaussian: Structure-Persistent 3D Talking Head Synthesis via Gaussian Splatting**.
-
-[Paper](https://arxiv.org/abs/2404.15264) | [Project](https://fictionarry.github.io/TalkingGaussian/) | [Video](https://youtu.be/c5VG7HkDs8I)
-
-![image](./assets/main.png)
-
 ## Installation
 
 Tested on Ubuntu 18.04, CUDA 11.3, PyTorch 1.12.1
 
-```
-git clone git@github.com:Fictionarry/TalkingGaussian.git --recursive
+TALKING HEAD SYNTHESIS WITH FACIAL LANDMARK GUIDANCE VIA 3D GAUSSIAN SPLATTING
 
 conda env create --file environment.yml
 conda activate talking_gaussian
@@ -51,17 +42,7 @@ If encounter installation problem from the `diff-gaussian-rasterization` or `gri
   wget "https://rndml-team-cv.obs.ru-moscow-1.hc.sbercloud.ru/datasets/easyportrait/experiments/models/fpn-fp-512.pth"
   ```
 
-## Usage
 
-### Important Notice
-
-- This code is provided for research purposes only. The author makes no warranties, express or implied, as to the accuracy, completeness, or fitness for a particular purpose of the code. Use this code at your own risk.
-
-- The author explicitly prohibits the use of this code for any malicious or illegal activities. By using this code, you agree to comply with all applicable laws and regulations, and you agree not to use it to harm others or to perform any actions that would be considered unethical or illegal.
-
-- The author will not be responsible for any damages, losses, or issues that arise from the use of this code. 
-
-- Users are encouraged to use this code responsibly and ethically.
 
 ### Video Dataset
 [Here](https://drive.google.com/drive/folders/1E_8W805lioIznqbkvTQHWWi5IFXUG7Er?usp=drive_link) we provide two video clips used in our experiments, which are captured from YouTube. Please respect the original content creators' rights and comply with YouTube’s copyright policies in the usage.
@@ -95,30 +76,13 @@ Other used videos can be found from [GeneFace](https://github.com/yerfor/GeneFac
 
 ### Audio Pre-process
 
-In our paper, we use DeepSpeech features for evaluation. 
+We adopt the WavLM model for audio feature extraction, which can effectively capture linguistic and acoustic features in audio, providing support for subsequent audio-visual feature alignment
 
-* DeepSpeech
+* Wavlm
 
   ```bash
-  python data_utils/deepspeech_features/extract_ds_features.py --input data/<name>.wav # saved to data/<name>.npy
+  python wavlm-new --wav /your/audio/
   ```
-
-- HuBERT
-
-  Similar to ER-NeRF, HuBERT is also available. Recommended for situations if the audio is not in English.
-
-  Specify `--audio_extractor hubert` when training and testing.
-
-  ```
-  python data_utils/hubert.py --wav data/<name>.wav # save to data/<name>_hu.npy
-  ```
-
-### Data Loading
-
-By default, we preload all the data into RAM for acceleration, but the consumption maybe unaffordable (about N x 32GB RAM for about N x 5k frames). 
-
-(Experimental) You can try to set `preload=False` in the `scene/dataset_readers.py - readCamerasFromTransforms(·)` to load the data temporally per iteration to save the cost. As the trade-off, the speed could be slower.
-
 ### Train
 
 ```bash
@@ -139,25 +103,3 @@ python synthesize_fuse.py -S data/<ID> -M output/<project_name> --eval
 python synthesize_fuse.py -S data/<ID> -M output/<project_name> --use_train --audio <preprocessed_audio_feature>.npy
 ```
 
-## Follow-Up 
-- [2025/02/28] Our work [InsTaG](https://fictionarry.github.io/InsTaG/) at CVPR 2025 is released! 🔥
-
-## Citation
-
-Consider citing as below if you find this repository helpful to your project:
-
-```
-@inproceedings{li2024talkinggaussian,
-  title={TalkingGaussian: Structure-Persistent 3D Talking Head Synthesis via Gaussian Splatting},
-  author={Li, Jiahe and Zhang, Jiawei and Bai, Xiao and Zheng, Jin and Ning, Xin and Zhou, Jun and Gu, Lin},
-  booktitle={European Conference on Computer Vision},
-  pages={127--145},
-  year={2024},
-  organization={Springer}
-}
-```
-
-
-## Acknowledgement
-
-This code is developed on [gaussian-splatting](https://github.com/graphdeco-inria/gaussian-splatting) with [simple-knn](https://gitlab.inria.fr/bkerbl/simple-knn), and a modified [diff-gaussian-rasterization](https://github.com/ashawkey/diff-gaussian-rasterization). Partial codes are from [RAD-NeRF](https://github.com/ashawkey/RAD-NeRF), [DFRF](https://github.com/sstzal/DFRF), [GeneFace](https://github.com/yerfor/GeneFace), and [AD-NeRF](https://github.com/YudongGuo/AD-NeRF). Teeth mask is from [EasyPortrait](https://github.com/hukenovs/easyportrait). Thanks for these great projects!

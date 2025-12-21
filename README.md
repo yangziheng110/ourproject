@@ -1,8 +1,8 @@
+TALKING HEAD SYNTHESIS WITH FACIAL LANDMARK GUIDANCE VIA 3D GAUSSIAN SPLATTING
+
 ## Installation
 
 Tested on Ubuntu 18.04, CUDA 11.3, PyTorch 1.12.1
-
-TALKING HEAD SYNTHESIS WITH FACIAL LANDMARK GUIDANCE VIA 3D GAUSSIAN SPLATTING
 
 conda env create --file environment.yml
 conda activate talking_gaussian

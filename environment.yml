@@ -1,4 +1,4 @@
-name: talking_gaussian
+name: talkinghead
 channels:
   - pytorch
   - conda-forge
